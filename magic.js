@@ -167,6 +167,7 @@ class Jugador {
         }
     }
 
+    
     // Metodo para seleccionar un mazo aleatorio del jugador
     seleccionarMazoAleatorio() {
         let iRandom = Math.floor(Math.random() * this.#mazos.length);
@@ -194,6 +195,70 @@ class Jugador {
         this.#mazos.push(new Mazo(nombreMazo));
     }
 }
+
+class Torneo {
+    #nombre;
+    #jugadores;
+
+
+    constructor(nombre, numJugadores = 8) {
+        this.#nombre = nombre;
+        this.#jugadores = [];
+
+        for (let i = i; i < numJugadores; i++) {
+            let nombreJugador = "Jugador " + (i + 1);
+            this.#jugadores.push(new Jugador(nombreJugador));
+        }
+    }
+
+        // Getters
+        getNombre() { return this.#nombre };
+        getJugadores() { return this.#jugadores };
+
+        printJugador() {
+        for (let i = 0; i < this.#jugadores.length; i++) {
+            console.log(` ${i + 1}. ${this.#jugadores[i].toString()}`);
+        }
+    }
+        //Mostrar los jugadores del torneo
+        mostrarJugadores() {
+            console.log(`\n --- Jugadores del torneo: ${this.#nombre} ---`);
+            for(let i = 0; i < this.#jugadores.length; i++) {
+                console.log(`\n${i + 1}: ${this.#jugadores[i].getNombre}:`);
+                this.#jugadores[i].printJugador();
+            }
+        }
+
+        seleccionarJugadorAleatorio() {
+        if (this.#jugadores.length === 0) {
+            return null;
+        }
+
+        /*Sacar todos lo jugaddsadaores del torneo aleatorios
+        []
+        
+            Se enfrentaria, el perdedor se saca
+            [7,3,5,2,4,1,6,0]
+            otro num aleatorio entre el 0 y 4
+            los que pierdan se retiras
+            {7,3,4,2} 
+            quedan solo dos
+            [7,3]
+            el bucle acaba cuando solo quede 1
+        */
+        let iRandom = Math.floor(Math.random() * this.#jugadores.length);
+        let jugadorSeleccionado = this.#jugadores.splice(iRandom, 1)[0];
+        return jugadorSeleccionado;
+
+        }
+
+        // Enfrentar jugadores 
+        enfrentarJugadores() {
+            // TODO: Hacer un bucle while(jugadoresTorneo > 1)
+        }
+
+}
+
 // Programa principal
 
 // Base de datos de cartas disponibles para el juego
@@ -292,20 +357,3 @@ jugador2.mostrarMazos();
 // Enfrentamiento
 console.log("\n --- Comienza el duelo ---");
 jugador1.enfrentarJugador(jugador2);
-
-/*
-// Mostrar las cartas disponibles en la base de datos
-console.log();
-console.log("Mostrar los mazos generados");
-
-// Crear dos mazos con nombres identificativos
-let mazo1 = new Mazo("Elfos Silvanos");
-let mazo2 = new Mazo("Mazos de la Oscuridad");
-
-// Mostrar el contenido de cada mazo
-mazo1.printMazo();
-mazo2.printMazo();
-console.log();
-
-// Iniciar la pelea entre los dos mazos
-mazo1.peleaMazos(mazo2);*/
