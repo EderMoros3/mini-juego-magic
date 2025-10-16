@@ -36,7 +36,12 @@ class Carta {
 
     // Representación legible de la carta
     toString() {
-        return this.#nombre + " {" + this.#ptos_ataque +"}"
+        return (
+            "-------------------------" +
+            "\n| " + this.#nombre +
+            "\n| Puntos de ataque: " + this.#ptos_ataque +
+            "\n-------------------------"
+        )
     }
 
     /*
@@ -60,4 +65,8 @@ class Carta {
         return ganador;
     }
 
+    renderCarta(zona) {
+        const cont = document.getElementById(zona);
+        cont.innerHTML = this.toString();
+    }
 }
