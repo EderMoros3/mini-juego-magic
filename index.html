@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic - juego de cartas</title>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Cargar las clases primero, luego magic.js y por último la UI -->
+    <script src="./scripts/carta.js"></script>
+    <script src="./scripts/mazo.js"></script>
+    <script src="./scripts/jugador.js"></script>
+    <script src="./scripts/magic.js"></script>
+    <script src="./scripts/ui.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Duelo entre Jugadores</h1>
+    </header>
+    <main>
+        <section id="jugadores">
+            <article id="jugador1">
+                <h2>Jugador 1</h2>
+            </article>
+            <article id="jugador2">
+                <h2>Jugador 2</h2>
+            </article>
+        </section>
+
+        <section id="controls">
+            <button id="btn-pelear">Pelear (azar)</button>
+            <button id="btn-refrescar">Refrescar mazos</button>
+            <div id="log"></div>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>
