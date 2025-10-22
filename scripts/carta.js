@@ -1,63 +1,50 @@
-/*
-  Clase Carta
-  - Representa una carta con nombre y puntos de ataque.
-  - Provee getters, representación en texto y un método simple de combate.
-  Contrato corto:
-  - constructor(nombre:string, ptos:number)
-  - getNombre():string, getPtos():number
-  - toString():string
-  - fight(otraCarta): number  (negativo = gana esta, 0 = empate, positivo = gana otra)
-*/
-class Carta {
-    // Campos privados: nombre y puntos de ataque
-    #ptos_ataque;  // Puntos de ataque de la carta
-    #nombre;       // Nombre de la carta
-
-    // Inicializa la carta con un nombre y puntos
-    constructor(nombre, ptos) {
-        this.#nombre = nombre;
-        this.#ptos_ataque = ptos;
-    }
-    
-    // Devuelve el nombre (lectura segura)
-    getNombre() {
-        return this.#nombre;
-    }
-
-    // Devuelve los puntos de ataque
-    getPtos(){
-        return this.#ptos_ataque;
-    }
-
-    // Imprime la carta en consola (útil para debugging)
-    print() {
-        console.log( this.#nombre + " {" + this.#ptos_ataque + "}");
-    }
-
-    // Representación legible de la carta
-    toString() {
-        return this.#nombre + " {" + this.#ptos_ataque +"}"
-    }
-
-    /*
-        Enfrenta esta carta contra otra.
-        Retorna: <0 si gana esta, 0 empate, >0 si gana la carta pasada.
-        También escribe un mensaje en consola sobre el resultado.
-    */
-    fight(carta) {
-        let ganador;
-        // Diferencia simple: puntos de la carta rival menos los de esta
-        ganador = carta.getPtos() - this.#ptos_ataque;
-    
-        // Mensaje de resultado (debug)
-        if(ganador < 0){
-            console.log("Ha ganado " + this.toString());
-        } else if(ganador == 0) {
-            console.log("Han muerto las dos cartas");
-        } else {
-            console.log("Ha ganado " + carta.toString());
-        }
-        return ganador;
-    }
-
+class Carta{
+	#nombre			// Nombre de la carta
+	#puntos			// Puntos de ataque
+	
+	constructor(nombre, puntos){
+		this.#nombre = nombre;
+		this.#puntos = puntos;
+	}
+	
+	getNombre(){ 
+		return this.#nombre;
+	}
+	
+	getPuntos(){
+		return this.#puntos;
+	}
+	
+	/** 
+	Saca por pantalla la información de la carta
+	*/
+	print(){
+		console.log(this.#nombre + " (" + this.#puntos + " ptos)");
+	}
+	
+	toString(){
+	    return this.#nombre + " (" + this.#puntos + " ptos)";
+	}
+	
+	
+	/**
+	Determina que carta pierde el combate
+	@return >0 si gana la carta sobre la que se invoca el métdodo
+			=0 si es un empate
+			<0 si gana la carta argumento
+	*/
+	fight(carta){
+	    console.log (this.toString() + " VS " + carta.toString());
+		return this.#puntos - carta.getPuntos();
+	}
+	
+	render(elto){
+		let string= "-------------------------------- <br>";
+		string += this.getNombre() + "<br>";
+		string += this.getPuntos() + "<br>";
+		string += "---------------------------------- <br>";
+		elto.innerHTML=string;
+		
+	}
+	
 }

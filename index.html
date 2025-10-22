@@ -9,7 +9,6 @@
     <script src="./scripts/carta.js"></script>
     <script src="./scripts/mazo.js"></script>
     <script src="./scripts/jugador.js"></script>
-    <script src="./scripts/magic.js"></script>
     <script src="./scripts/ui.js"></script>
 </head>
 <body>
@@ -17,21 +16,34 @@
         <h1>Duelo entre Jugadores</h1>
     </header>
     <main>
-        <section id="jugadores">
-            <article id="jugador1">
-                <h2>Jugador 1</h2>
-            </article>
-            <article id="jugador2">
-                <h2>Jugador 2</h2>
-            </article>
+        <section class="jugadores">
+          <div class="player-zone">
+            <div class="player-zone-info" id="player0-info"></div>
+            <div class="player-deck-zone" id="player0-deck"></div>
+          </div>
+            <button class="buttons-sacar-carta" 
+            id="button-player0-zone">
+            Sacar carta
+          </button>
         </section>
 
-        <section id="controls">
-            <button id="btn-pelear">Pelear (azar)</button>
-            <button id="btn-refrescar">Refrescar mazos</button>
-            <div id="log"></div>
+        <section class="game-zone">
+          <div id="player0-card"></div>
+          <button class="button-fight">Pelear</button>
+          <div id="player1-card"></div>
+        </section>
+
+        <section class="jugadores">
+          <button class="buttons-sacar-carta" 
+          id="button-player1-zone">
+          Sacar carta
+        </button>
+          <div class="player-zone">
+            <div class="player-deck-zone" id="player1-deck"></div>
+            <div class="player-deck-zone" id="player1-deck"></div>
+            <div class="player-zone-info" id="player1-info"></div>
+          </div>
         </section>
     </main>
-    <footer></footer>
 </body>
 </html>
