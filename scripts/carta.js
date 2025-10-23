@@ -46,5 +46,13 @@ class Carta{
 		elto.innerHTML=string;
 		
 	}
+
+	renderWinner(zona) {
+		let string= "-------------------------------- <br>";
+		string += "Ha ganado la carta " + this.getNombre;
+		string += this.getPuntos() + "<br>";
+		string += "---------------------------------- <br>";
+		zona.innerHTML=string;
+	}
 	
 }

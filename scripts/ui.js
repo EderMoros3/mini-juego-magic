@@ -3,7 +3,8 @@ const NUM_PLAYERS = 2;
 const CARTAS_POR_MAZO = 10;
 const playersNames = ["Pablo el demonio", "Pedro el mago", "Jose el sabio", "Federico el cocas"]
 const deckNames = ["Esqueletos tenebrosos", "Magos arcanos", "Zombies corruptos", "Perros toxicomanos"]
-
+let cartaJugador1;
+let cartaJugador2;
 // Base de datos de cartas disponibles para el juego (instancias de Carta)
 let cartasDB = [
     
@@ -69,6 +70,21 @@ function createMazo() {
   return mazo;
 }
 
+function fightCards() {
+  let resultado = cartaJugador1.fight(cartaJugador2);
+
+  if (resultado > 0) {
+    console.log("Ha ganado la carta " + cartaJugador1);
+    return cartaJugador1;
+  } else if (resultado === 0) {
+    console.log("Han empatado");
+    return null;
+  } else {
+    console.log("Ha ganado la carta " + cartaJugador2);
+    return cartaJugador2;
+  }
+
+}
 
 function initGUI() {
 
@@ -80,9 +96,12 @@ function initGUI() {
 
   const buttonPlayer0 = document.getElementById('button-player0-zone');
   const buttonPlayer1 = document.getElementById('button-player1-zone');
+  const buttonFight = document.getElementById('button-fight');
 
   const player0card = document.getElementById('player0-card');
   const player1card = document.getElementById('player1-card');
+
+  const resultFight = document.getElementById('results');
 
   let jugador1 = createPlayer()
   jugador1.render(player0info);
@@ -96,8 +115,8 @@ function initGUI() {
   let mazoJugador2 = jugador2.getMazoElegido();
   mazoJugador2.render(player1deck);
 
-  let cartaJugador1 = null;
-  let cartaJugador2 = null;
+  cartaJugador1 = null;
+  cartaJugador2 = null;
 
   buttonPlayer0.addEventListener('click', function() {
     if (cartaJugador1 === null) {
@@ -112,9 +131,12 @@ function initGUI() {
     if (cartaJugador2 === null) {
       cartaJugador2 = jugador2.sacarCarta();
 
+
       console.log(jugador2.getNombre() + " saca carta: " + cartaJugador2.getNombre());
       cartaJugador2.render(player1card);
     }
   });
+
+  buttonFight.addEventListener('click', fightCards);
 
 }
